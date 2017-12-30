@@ -1,0 +1,40 @@
+currentName
+
+
+Stanza from Giphy
+
+var settings = {
+  "async": true,
+  "crossDomain": true,
+  "url": "http://api.giphy.com/v1/gifs/search?limit=10&q=coyote&rating=g&api_key=dc6zaTOxFJmzC",
+  "method": "GET",
+  "headers": {},
+  "data": "{}"
+}
+
+$.ajax(settings).done(function (response) {
+  console.log(response);
+});
+
+
+Moving: original
+Stopped: original_still
+
+
+adding class name to the #photo
+
+ $("#photo").append('<img class="gif" src="' + response.data[i].images.fixed_height_still.url + '">');
+event handler which will control play and stop
+
+$('body').on('click', '.gif', function() {
+    var src = $(this).attr("src");
+  if($(this).hasClass('playing')){
+     //stop
+     $(this).attr('src', src.replace(/\.gif/i, "_s.gif"))
+     $(this).removeClass('playing');
+  } else {
+    //play
+    $(this).addClass('playing');
+    $(this).attr('src', src.replace(/\_s.gif/i, ".gif"))
+  }
+});
