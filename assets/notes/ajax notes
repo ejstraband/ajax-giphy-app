@@ -17,6 +17,10 @@ $.ajax(settings).done(function (response) {
 });
 
 
+"https://api.giphy.com/v1/gifs/search?limit=10&q=gossamer&rating=g&api_key=dc6zaTOxFJmzC"
+
+
+
 Moving: original
 Stopped: original_still
 
