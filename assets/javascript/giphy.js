@@ -16,17 +16,13 @@ function buttonBuilder() {
 // load the page
 console.log("page load");
 
-// main function
+// build buttons
 buttonBuilder();
 
-// flow control
-console.log("ooga");
+// main function
 
-
-
-// button is clicked to pick the current character
+// button is clicked to pick the current character and 
 $("button").click(function() {
-	// f.preventDefault();
 	// empty the gif div
 	console.log("Div Emptied");
 	$("#gifs").empty();
@@ -39,7 +35,6 @@ $("button").click(function() {
 	// build out the search
 	var searchString = "search?limit=10&q=" + currentCharacter + "&rating=g&api_key=1yhVot2gI6XiVj6HHkib7tef7bGj8NY8";
 	console.log("Search String is: " + searchString);
-
 	var searchUrl = "https://api.giphy.com/v1/gifs/" + searchString;
 	console.log("Search URL is: " + searchUrl);
 
@@ -49,6 +44,7 @@ $("button").click(function() {
 		var results = response.data;
 		console.log(results.length);
 
+		// get the gifs
 		for (var i = 0; i < results.length; i++) {
 			var stillImage = response.data[i].images.original_still.url;
 			console.log(stillImage);
@@ -57,22 +53,23 @@ $("button").click(function() {
 			var rating = response.data[i].rating;
 			console.log(rating);
 
+			// write the gifs out to the page
 			$("#gifs").append('<img src="' + stillImage + '" data-still="' + stillImage + '" data-animate="' + animatedImage + '" data-state="still" class="gif">');
 			$("#gifs").append('<p> Rating: ' + rating + '</p>')
 			}
 
-	// gif click to swap image
-	$(".gif").on("click", function() {
-		console.log("image clicked");
-		var state = $(this).attr("data-state");
-		if (state === "still") {
-			$(this).attr("src", $(this).attr("data-animate"));
-			$(this).attr("data-state", "animate");
-		} else {
-			$(this).attr("src", $(this).attr("data-still"));
-			$(this).attr("data-state", "still");
-			}
-		});
+		// gif click to swap image
+		$(".gif").on("click", function() {
+			console.log("image clicked");
+			var state = $(this).attr("data-state");
+			if (state === "still") {
+				$(this).attr("src", $(this).attr("data-animate"));
+				$(this).attr("data-state", "animate");
+			} else {
+				$(this).attr("src", $(this).attr("data-still"));
+				$(this).attr("data-state", "still");
+				}
+			});
 	});
 });
 
@@ -83,5 +80,4 @@ $("#addTopic").on("click", function(e) {
 	console.log("Additional topic is: " + newTopic);
 	topics.push(newTopic);
 	buttonBuilder();
-	exit();
 	});
