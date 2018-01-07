@@ -26,7 +26,6 @@ $("button").click(function() {
 	// empty the gif div
 	console.log("Div Emptied");
 	$("#gifs").empty();
-
 	// log the button click event
 	console.log("button clicked");
 	currentCharacter = $(this).attr("id");
@@ -39,7 +38,7 @@ $("button").click(function() {
 	console.log("Search URL is: " + searchUrl);
 
 	// run the ajax call
-	$.ajax(searchUrl).done(function (response) {
+	$.ajax(searchUrl).done(function(response) {
 		console.log("AJAX response is: " + response);
 		var results = response.data;
 		console.log(results.length);
@@ -55,7 +54,7 @@ $("button").click(function() {
 
 			// write the gifs out to the page
 			$("#gifs").append('<img src="' + stillImage + '" data-still="' + stillImage + '" data-animate="' + animatedImage + '" data-state="still" class="gif">');
-			$("#gifs").append('<p> Rating: ' + rating + '</p>')
+			$("#gifs").append('<p> Rating: ' + rating + '</p>');
 			}
 
 		// gif click to swap image
@@ -69,12 +68,12 @@ $("button").click(function() {
 				$(this).attr("src", $(this).attr("data-still"));
 				$(this).attr("data-state", "still");
 				}
-			});
+		});
 	});
 });
 
 // option to add a button
-$("#addTopic").on("click", function(e) {
+$("#addTopic").click(function(e) {
 	e.preventDefault();
 	newTopic = $("#newTopic").val().trim();
 	console.log("Additional topic is: " + newTopic);
