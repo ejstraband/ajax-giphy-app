@@ -36,14 +36,28 @@ $("button").click(function() {
 		console.log("AJAX response is: " + response);
 		var results = response.data;
 		console.log(results.length);
-		// var gossamerUrl = "https://media0.giphy.com/media/IqAzHA6jooBTW/giphy_s.gif"
 
 		for (var i = 0; i < results.length; i++) {
 			var stillImage = response.data[i].images.original_still.url
+			console.log(stillImage);
 			var animatedImage = response.data[i].images.original.url
-			$("#gifs").append('<img id="fetchedGif' + (i+1) + '" src="' + stillImage + '">');
-			console.log(response.data[i].images.original_still);
+			console.log(animatedImage);
+			$("#gifs").append('<img src="' + stillImage + '" data-still="' + stillImage + '" data-animate="' + animatedImage + '" data-state="still" class="gif">');
 			}
+
+	// gif click to swap image
+	$(".gif").on("click", function() {
+		console.log("image clicked");
+		var state = $(this).attr("data-state");
+		if (state === "still") {
+			$(this).attr("src", $(this).attr("data-animate"));
+			$(this).attr("data-state", "animate");
+		} else {
+			$(this).attr("src", $(this).attr("data-still"));
+			$(this).attr("data-state", "still");
+		}
 		});
+
+	});
 
 });
