@@ -12,7 +12,7 @@
 
 	// add new topic
 	function addTopic() {
-		newTopic = $("#newTopic").val().trim();
+		var newTopic = $("#newTopic").val().trim();
 		console.log("Additional topic is: " + newTopic);
 		topics.push(newTopic);
 		buttonBuilder();
@@ -37,6 +37,8 @@
 	// fetch gifs
 	function displayGifs() {
 		emptyGifsDiv();
+
+		currentCharacter = $(this).attr("id");
 
 		var searchString = "search?limit=10&q=" + currentCharacter + "&rating=g&api_key=1yhVot2gI6XiVj6HHkib7tef7bGj8NY8";
 		console.log("Search String is: " + searchString);
@@ -63,9 +65,7 @@
 			// write them out to the page	
 			$("#gifs").append('<img src="' + stillImage + '" data-still="' + stillImage + '" data-animate="' + animatedImage + '" data-state="still" class="gif">');
 			$("#gifs").append('<p> Rating: ' + rating + '</p>');
-				console.log("here we are 1");
 			}
-			console.log("here we are 2");
 		});
 	}
 
@@ -73,6 +73,7 @@
 	function gifAnimator() {
 		console.log("image clicked");
 		var state = $(this).attr("data-state");
+		console.log(state);
 		if (state === "still") {
 			$(this).attr("src", $(this).attr("data-animate"));
 			$(this).attr("data-state", "animate");
@@ -82,24 +83,19 @@
 		}	
 	}
 
+// Primary Application Logic
+
 buttonBuilder();
 console.log("inital buttons drawn");
 // click event to add a topic to the array
 
-$("#addTopic").click(function() {
+$("#addTopic").on("click", function(e) {
+	e.preventDefault();
 	addTopic();
 });
 
 // click event to fetch images
-$("button").click(function() {
-	// log the button click event
-	console.log("button clicked");
-	currentCharacter = $(this).attr("id");
-	console.log("Current Character is: " + currentCharacter);
-	displayGifs();
-});
+$(document).on("click", "button", displayGifs);
 
 // click even to animate images
-$("gif").click(function() {
-	gifAnimator();
-});
+$(document).on("click", ".gif", gifAnimator);
