@@ -1,20 +1,36 @@
 // array of people
 var topics = ["Bugs Bunny", "Daffy Duck", "Elmer Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"]
 var currentCharacter;
-console.log(topics);
+console.log("Initial topics: " + topics);
+
+// build the buttons
+function buttonBuilder() {
+	$(".buttons").empty();
+	console.log("buttons emptied");
+	for (var i = 0; i < topics.length; i++) {
+	$(".buttons").append('<button id="' + topics[i] + '">' + topics[i] + '</button>')
+	}
+	console.log("buttons written");
+}
 
 // load the page
 console.log("page load");
 
-// build the buttons
-for (var i = 0; i < topics.length; i++) {
-$(".buttons").append('<button id="' + topics[i] + '">' + topics[i] + '</button>')
-}
-
 // main function
+buttonBuilder();
+
+// option to add a button
+$("#addTopic").on("click", function() {
+	// e.preventDefault();
+	newTopic = $("#newTopic").val().trim();
+	console.log("Additional topic is: " + newTopic);
+	topics.push(newTopic);
+	buttonBuilder();
+});
 
 // button is clicked to pick the current character
 $("button").click(function() {
+	// f.preventDefault();
 	// empty the gif div
 	console.log("Div Emptied");
 	$("#gifs").empty();
@@ -61,7 +77,5 @@ $("button").click(function() {
 			$(this).attr("data-state", "still");
 		}
 		});
-
 	});
-
 });
