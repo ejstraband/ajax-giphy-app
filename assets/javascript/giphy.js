@@ -1,14 +1,14 @@
 // array of people
-var characters = ["Bugs Bunny", "Daffy Duck", "Elmer Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"]
+var topics = ["Bugs Bunny", "Daffy Duck", "Elmer Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"]
 var currentCharacter;
-console.log(characters);
+console.log(topics);
 
 // load the page
 console.log("page load");
 
 // build the buttons
-for (var i = 0; i < characters.length; i++) {
-$(".buttons").append('<button id="' + characters[i] + '">' + characters[i] + '</button>')
+for (var i = 0; i < topics.length; i++) {
+$(".buttons").append('<button id="' + topics[i] + '">' + topics[i] + '</button>')
 }
 
 // main function
@@ -38,11 +38,15 @@ $("button").click(function() {
 		console.log(results.length);
 
 		for (var i = 0; i < results.length; i++) {
-			var stillImage = response.data[i].images.original_still.url
+			var stillImage = response.data[i].images.original_still.url;
 			console.log(stillImage);
-			var animatedImage = response.data[i].images.original.url
+			var animatedImage = response.data[i].images.original.url;
 			console.log(animatedImage);
+			var rating = response.data[i].rating;
+			console.log(rating);
+
 			$("#gifs").append('<img src="' + stillImage + '" data-still="' + stillImage + '" data-animate="' + animatedImage + '" data-state="still" class="gif">');
+			$("#gifs").append('<p> Rating: ' + rating + '</p>')
 			}
 
 	// gif click to swap image
