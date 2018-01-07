@@ -19,14 +19,10 @@ console.log("page load");
 // main function
 buttonBuilder();
 
-// option to add a button
-$("#addTopic").on("click", function() {
-	// e.preventDefault();
-	newTopic = $("#newTopic").val().trim();
-	console.log("Additional topic is: " + newTopic);
-	topics.push(newTopic);
-	buttonBuilder();
-});
+// flow control
+console.log("ooga");
+
+
 
 // button is clicked to pick the current character
 $("button").click(function() {
@@ -75,7 +71,17 @@ $("button").click(function() {
 		} else {
 			$(this).attr("src", $(this).attr("data-still"));
 			$(this).attr("data-state", "still");
-		}
+			}
 		});
 	});
 });
+
+// option to add a button
+$("#addTopic").on("click", function(e) {
+	e.preventDefault();
+	newTopic = $("#newTopic").val().trim();
+	console.log("Additional topic is: " + newTopic);
+	topics.push(newTopic);
+	buttonBuilder();
+	exit();
+	});
