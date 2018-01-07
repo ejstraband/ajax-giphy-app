@@ -4,7 +4,7 @@
 
 // primary variables
 	// array of topics
-	var topics = ["Bugs Bunny", "Daffy Duck", "Elmer Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"];
+	var topics = ["Bugs Bunny", "Daffy Duck", "Elmer J. Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"];
 	var currentCharacter;
 	console.log("Initial topics: " + topics);
 

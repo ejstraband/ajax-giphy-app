@@ -1,10 +1,10 @@
-// giphy2.js
+// giphy3.js
 
 // html builds the inital page
 
 // primary variables
 	// array of topics
-	var topics = ["Bugs Bunny", "Daffy Duck", "Elmer J. Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"];
+	var topics = ["Bugs Bunny", "Daffy Duck", "Elmer Fudd", "The Tazmanian Devil", "Foghorn Leghorn", "Road Runner", "Wile E. Coyote", "Gossamer", "Marvin the Martian", "Michigan J. Frog"];
 	var currentCharacter;
 	console.log("Initial topics: " + topics);
 
@@ -23,7 +23,11 @@
 		$(".buttons").empty();
 		console.log("buttons emptied");
 		for (var i = 0; i < topics.length; i++) {
-		$(".buttons").append('<button id="' + topics[i] + '">' + topics[i] + '</button>')
+		var btn = $("<button>");
+		btn.attr("id",topics[i]);
+		btn.text(topics[i]);
+		btn.addClass("button");
+		$(".buttons").append(btn);
 		}
 		console.log("buttons written");
 		}
@@ -73,7 +77,6 @@
 	function gifAnimator() {
 		console.log("image clicked");
 		var state = $(this).attr("data-state");
-		console.log(state);
 		if (state === "still") {
 			$(this).attr("src", $(this).attr("data-animate"));
 			$(this).attr("data-state", "animate");
@@ -83,19 +86,20 @@
 		}	
 	}
 
-// Primary Application Logic
-
 buttonBuilder();
 console.log("inital buttons drawn");
 // click event to add a topic to the array
 
-$("#addTopic").on("click", function(e) {
-	e.preventDefault();
-	addTopic();
+$("#addTopic").on("click",function(event) {
+	event.preventDefault();
+	var newTopic = $("#newTopic").val().trim();
+		console.log("Additional topic is: " + newTopic);
+		topics.push(newTopic);
+		buttonBuilder();
 });
 
 // click event to fetch images
-$(document).on("click", "button", displayGifs);
+$(document).on("click",".button", displayGifs);
 
 // click even to animate images
-$(document).on("click", ".gif", gifAnimator);
+$(document).on("click",".gif", gifAnimator);
