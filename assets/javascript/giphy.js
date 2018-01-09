@@ -1,4 +1,4 @@
-// giphy2.js
+ // giphy2.js
 
 // html builds the inital page
 
@@ -55,9 +55,9 @@
 
 			// get the gifs
 			for (var i = 0; i < results.length; i++) {
-				var stillImage = response.data[i].images.original_still.url;
+				var stillImage = response.data[i].images.fixed_width_still.url;
 				console.log(stillImage);
-				var animatedImage = response.data[i].images.original.url;
+				var animatedImage = response.data[i].images.fixed_width.url;
 				console.log(animatedImage);
 				var rating = response.data[i].rating;
 				console.log(rating);
